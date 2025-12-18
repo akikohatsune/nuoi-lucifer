@@ -42,7 +42,7 @@ export default function Documentation() {
           <tr>
             <td><code>Tên</code></td>
             <td>Tên người gửi</td>
-            <td>Người Bí Ẩn</td>
+            <td>Ẩn danh</td>
           </tr>
           <tr>
             <td><code>Lời nhắn</code></td>
@@ -80,7 +80,7 @@ const TEST_MODE = false; </code></pre>
       <ol>
         <li>Mở OBS &rarr; Phần <strong>Sources</strong> &rarr; Chuột phải &rarr; Add <strong>Browser</strong>.</li>
         <li>Đặt tên là <code>Alert Donate</code>.</li>
-        <li><strong>URL:</strong> Điền link web của bạn (VD: <code>https://your-domain.com/overlay/alert</code>).</li>
+        <li><strong>URL:</strong> Điền link web của bạn (VD: <code>https://nuoi-lucifer.komekokomi.id.vn/overlay/alert</code>).</li>
         <li><strong>Width:</strong> <code>1920</code> (Hoặc độ rộng màn hình stream).</li>
         <li><strong>Height:</strong> <code>1080</code>.</li>
         <li>Tích vào ô: <code>Shutdown source when not visible</code> (Tùy chọn).</li>
@@ -91,6 +91,25 @@ const TEST_MODE = false; </code></pre>
         <strong>⚠️ Lưu ý quan trọng:</strong><br/>
         Mỗi khi bạn sửa code hoặc cập nhật CSS, bạn cần vào OBS &rarr; Double click vào Browser Source &rarr; Kéo xuống dưới cùng và nhấn nút <strong style={{color: '#ff66aa'}}>Refresh cache of current page</strong> để OBS nhận giao diện mới.
       </div>
+
+      {/* --- PHẦN 3: CÀI ĐẶT OBS --- */}
+      <h2>3. Thêm vào OBS Studio</h2>
+      <p>Làm theo các bước sau để hiển thị Overlay QR lên livestream:</p>
+      <ol>
+        <li>Mở OBS &rarr; Phần <strong>Sources</strong> &rarr; Chuột phải &rarr; Add <strong>Browser</strong>.</li>
+        <li>Đặt tên là <code>Alert Donate</code>.</li>
+        <li><strong>URL:</strong> Điền link web của bạn (VD: <code>https://nuoi-lucifer.komekokomi.id.vn/overlay</code>).</li>
+        <li><strong>Width:</strong> <code>1920</code> (Hoặc độ rộng màn hình stream).</li>
+        <li><strong>Height:</strong> <code>1080</code>.</li>
+        <li>Tích vào ô: <code>Shutdown source when not visible</code> (Tùy chọn).</li>
+        <li>Nhấn <strong>OK</strong>.</li>
+      </ol>
+
+      <div style={{ background: '#330000', padding: '15px', borderLeft: '5px solid red', margin: '20px 0' }}>
+        <strong>⚠️ Lưu ý quan trọng:</strong><br/>
+        Mỗi khi bạn sửa code hoặc cập nhật CSS, bạn cần vào OBS &rarr; Double click vào Browser Source &rarr; Kéo xuống dưới cùng và nhấn nút <strong style={{color: '#ff66aa'}}>Refresh cache of current page</strong> để OBS nhận giao diện mới.
+      </div>
+
 
       {/* --- PHẦN 4: CUSTOM GIAO DIỆN --- */}
       <h2>4. Chỉnh sửa Giao diện (CSS)</h2>
@@ -106,7 +125,7 @@ const TEST_MODE = false; </code></pre>
 
       <hr style={{ borderColor: '#333', margin: '40px 0' }} />
       <p style={{ textAlign: 'center', fontSize: '0.9em', color: '#666' }}>
-        Documented by <strong>NuoiLucifer Dev Team</strong> © 2025
+        Documented by <strong>komekokomi</strong> © 2025
       </p>
     </div>
   );
