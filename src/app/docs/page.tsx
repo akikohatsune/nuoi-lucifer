@@ -7,7 +7,7 @@ export default function Documentation() {
       <h1>Hướng Dẫn Sử Dụng Overlay</h1>
       
       <p>
-        Chào mừng đến với trang tài liệu hướng dẫn setup <strong>Alert Overlay</strong>. 
+        Chào mừng đến với trang tài liệu hướng dẫn setup <strong>Alert Overlay/OverlayQR</strong>. 
         Hệ thống này giúp hiển thị thông báo Donate theo thời gian thực từ Google Sheets lên OBS.
       </p>
 
