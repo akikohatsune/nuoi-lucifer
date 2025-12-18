@@ -1,0 +1,107 @@
+/* src/app/overlay/alert/style.css */
+
+/* 1. Reset Global cho trang này */
+header, nav, footer, .navbar { 
+  display: none !important; 
+} 
+
+html, body { 
+  height: 100%; 
+  margin: 0; 
+  padding: 0; 
+  overflow: hidden; 
+  background: transparent !important; /* Nền trong suốt */
+}
+
+/* Căn giữa nội dung cho body */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 2. Container chính */
+.alert-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* 3. Khung Alert */
+.alert { 
+  color: #fff; 
+  padding: 10px; 
+  text-align: center; 
+  opacity: 0; /* Mặc định ẩn */
+  
+  /* Bóng đổ chữ đậm */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.9); 
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 4. Animation */
+.alert.show { 
+  animation: fadeIn 0.6s ease-out forwards; 
+}
+
+.alert.fade-out { 
+  animation: fadeOut 0.6s ease-in forwards; 
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-10px); }
+}
+
+/* 5. DÒNG 1 (Tên - Text - Tiền) */
+.line1 { 
+  font-size: 30px; 
+  margin-bottom: 10px;
+  
+  /* Flexbox tách chữ */
+  display: flex;      
+  flex-direction: row; 
+  align-items: center;
+  justify-content: center;
+  gap: 12px;  /* Khoảng cách cứng 12px */
+  white-space: nowrap; 
+}
+
+.name { 
+  color: #ff66b2; /* Hồng */
+  font-weight: 900; 
+  text-transform: uppercase; 
+}
+
+.status { 
+  color: #ffffff; 
+  opacity: 0.9; 
+  font-weight: 600; 
+  font-size: 0.8em; 
+}
+
+.amount { 
+  color: #3ad46b; /* Xanh lá */
+  font-weight: 900; 
+}
+
+/* 6. DÒNG 2 (Lời nhắn) */
+.line2 { 
+  color: #ffffff; 
+  font-style: italic; 
+  opacity: 0.95; 
+  font-size: 24px;
+  font-weight: 500;
+  max-width: 900px;
+  line-height: 1.4;
+}

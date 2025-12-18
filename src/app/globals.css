@@ -346,3 +346,109 @@ tr:hover {
         gap: 20px;
     }
 }
+
+/* --- OVERLAY OBS STYLE (Phiên bản có QR) --- */
+.transparent-bg {
+    background-color: transparent !important;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Hiện ở dưới cùng */
+    padding-bottom: 50px;
+    overflow: hidden;
+}
+
+.alert-box {
+    background: rgba(20, 20, 20, 0.95); /* Màu nền tối hơn */
+    border: 2px solid #ff66aa;
+    border-radius: 15px;
+    padding: 15px 30px;
+    display: flex; /* Xếp ngang */
+    align-items: center;
+    gap: 25px; /* Khoảng cách giữa các cột */
+    box-shadow: 0 0 30px rgba(255, 102, 170, 0.6);
+    
+    /* Animation trồi lên */
+    animation: slideInUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    max-width: 900px;
+}
+
+/* Cột Avatar */
+.avatar-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    object-fit: cover;
+}
+
+/* Cột Thông tin (Ở giữa) */
+.col-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Canh trái text */
+    min-width: 250px;
+}
+
+.alert-name {
+    font-size: 28px;
+    font-weight: 900;
+    color: #ff66aa;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.alert-action {
+    font-size: 14px;
+    color: #bbb;
+    margin-bottom: 5px;
+}
+
+.alert-amount {
+    font-size: 36px;
+    font-weight: 800;
+    color: #00ff00;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.alert-content {
+    font-size: 18px;
+    color: #fff;
+    font-style: italic;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Cột QR (Bên phải) */
+.col-qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.qr-title {
+    color: #000;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.qr-img {
+    width: 100px; /* Kích thước QR */
+    height: 100px;
+    display: block;
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(150%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
