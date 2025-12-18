@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import './status.css'; // Import CSS
 
 // Link CSV của bạn
-const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/xxxxx/pub?output=csv";
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEAUBRs8RmNLMlelOmHJoc4369oJ3CDD8s27L5JKAM54hQ6r6aAFl-J0KYKrrVJWYKz2VOUo5ZLJ3s/pub?output=csv";
+
 
 export default function ServiceStatus() {
   const [status, setStatus] = useState<'checking' | 'online' | 'offline'>('checking');
