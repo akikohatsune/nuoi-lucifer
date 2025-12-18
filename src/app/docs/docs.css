@@ -1,0 +1,81 @@
+/* src/app/docs/docs.css */
+
+/* Reset cơ bản */
+.docs-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #e0e0e0;
+    line-height: 1.6;
+    background-color: #121212; /* Nền tối */
+    min-height: 100vh;
+}
+
+/* Tiêu đề */
+h1 {
+    font-size: 2.5rem;
+    color: #ff66aa; /* Hồng chủ đạo */
+    border-bottom: 2px solid #ff66aa;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #3ad46b; /* Xanh lá điểm nhấn */
+    margin-top: 40px;
+    margin-bottom: 15px;
+    border-left: 5px solid #3ad46b;
+    padding-left: 15px;
+}
+
+h3 {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-top: 25px;
+}
+
+/* Đoạn văn & List */
+p { margin-bottom: 15px; color: #ccc; }
+ul, ol { margin-bottom: 20px; padding-left: 25px; }
+li { margin-bottom: 8px; color: #ddd; }
+
+/* Code block */
+pre {
+    background: #1e1e1e;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    border: 1px solid #333;
+    margin: 15px 0;
+}
+
+code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    color: #ff9d00; /* Màu cam cho code */
+}
+
+/* Nút bấm hoặc Link */
+a {
+    color: #ff66aa;
+    text-decoration: none;
+    font-weight: bold;
+}
+a:hover { text-decoration: underline; }
+
+/* Bảng */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #1e1e1e;
+}
+th, td {
+    padding: 12px;
+    border: 1px solid #333;
+    text-align: left;
+}
+th { background: #333; color: #fff; }

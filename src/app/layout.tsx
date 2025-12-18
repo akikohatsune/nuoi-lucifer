@@ -53,6 +53,7 @@ export default function RootLayout({
             <Link href="/member">Member</Link>
             <Link href="/donate">Donate</Link>
             <Link href="/help">Help</Link>
+            <Link href="/docs">Documentation</Link>
             {/* Link Logs là web ngoài nên dùng thẻ <a> thường */}
             <a href="https://stats.uptimerobot.com/8Q9tg0IAza" target="_blank" rel="noopener noreferrer">
               Logs
