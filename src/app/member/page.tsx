@@ -26,7 +26,7 @@ const members = [
     socials: {
       github: "https://github.com/akikohatsune",
       youtube: "https://www.youtube.com/@reopymiku",
-      discord: "satori#9999"
+      discord: "reopymiku"
     }
   },
   {
@@ -34,11 +34,11 @@ const members = [
     name: "TheRealShu07",
     role: "Contributor",
     stats: "Main Treasurer",
-    avatarBg: "av-4", // Dùng av-4 theo code cũ
+    avatarBg: "av-4", 
     imgSrc: "/image/shu.jpg",
     socials: {
       youtube: "https://www.youtube.com/@TheRealShu07",
-      discord: "thangngot"
+      discord: "aicungconhucaudevatva"
     }
   },
   {

@@ -45,7 +45,7 @@ export default function DonatePage() {
             const cleanData = rawData.map((row: any) => ({
               // Sửa tên cột bên dưới cho khớp CHÍNH XÁC với dòng 1 trong Google Sheet của bạn
               timestamp: row['Dấu thời gian'] || row['Timestamp'],
-              name: row['Tên người gửi'] || 'Ẩn danh',
+              name: row['Tên người gửi'] || '',
               amount: row['Số tiền'] || '0',
               content: row['Lời nhắn'] || ''
             }));
