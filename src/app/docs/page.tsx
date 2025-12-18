@@ -75,7 +75,7 @@ const CHECK_INTERVAL = 3000; // 3 giây check 1 lần
 const TEST_MODE = false; </code></pre>
 
       {/* --- PHẦN 3: CÀI ĐẶT OBS --- */}
-      <h2>3. Thêm vào OBS Studio</h2>
+      <h2>3. Thêm vào OBS Studio (Alert Overlay)</h2>
       <p>Làm theo các bước sau để hiển thị Overlay lên livestream:</p>
       <ol>
         <li>Mở OBS &rarr; Phần <strong>Sources</strong> &rarr; Chuột phải &rarr; Add <strong>Browser</strong>.</li>
@@ -93,11 +93,11 @@ const TEST_MODE = false; </code></pre>
       </div>
 
       {/* --- PHẦN 3: CÀI ĐẶT OBS --- */}
-      <h2>3. Thêm vào OBS Studio</h2>
+      <h2>3. Thêm vào OBS Studio (OverlayQR)</h2>
       <p>Làm theo các bước sau để hiển thị Overlay QR lên livestream:</p>
       <ol>
         <li>Mở OBS &rarr; Phần <strong>Sources</strong> &rarr; Chuột phải &rarr; Add <strong>Browser</strong>.</li>
-        <li>Đặt tên là <code>Alert Donate</code>.</li>
+        <li>Đặt tên là <code>QR Donate</code>.</li>
         <li><strong>URL:</strong> Điền link web của bạn (VD: <code>https://nuoi-lucifer.komekokomi.id.vn/overlay</code>).</li>
         <li><strong>Width:</strong> <code>1920</code> (Hoặc độ rộng màn hình stream).</li>
         <li><strong>Height:</strong> <code>1080</code>.</li>
