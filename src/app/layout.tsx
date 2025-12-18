@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/image/miku.png", // Ảnh đại diện khi gửi link (nhớ để ảnh trong thư mục public/image)
-        width: 1200,
+        width: 630,
         height: 630,
       },
     ],
