@@ -1,4 +1,4 @@
-"use client"; // Dòng này luôn phải ở đầu tiên
+"use client"; // Luôn ở đầu
 
 import React, { useState, useEffect, Suspense } from 'react'; 
 import { db } from '@/lib/firebase';
@@ -9,10 +9,10 @@ import './style.css';
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "";
 const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "";
 
-// 1. Đây là Ruột (Logic chính) - Đổi tên hàm, bỏ chữ export default
+// 1. Hàm Logic chính (Đã sửa đường dẫn)
 function BlogContent() {
   const router = useRouter();
-  const searchParams = useSearchParams(); // Cái này gây lỗi nếu không bọc Suspense
+  const searchParams = useSearchParams();
   
   const [posts, setPosts] = useState<any[]>([]);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -26,12 +26,13 @@ function BlogContent() {
   const [isUploading, setIsUploading] = useState(false);
   const [votedPosts, setVotedPosts] = useState<Set<string>>(new Set());
 
-  // --- LOGIC AUTH ---
+  // --- LOGIC AUTH (ĐÃ SỬA LẠI ĐƯỜNG DẪN) ---
   useEffect(() => {
     const authCode = searchParams.get('auth');
     if (authCode === 'success') {
         setIsAdmin(true);
-        router.replace('/list'); 
+        // SỬA: Chuyển về /blog thay vì /list
+        router.replace('/blog'); 
     }
   }, [searchParams, router]);
 
@@ -48,7 +49,7 @@ function BlogContent() {
     return () => unsubscribe();
   }, []);
 
-  // --- HANDLERS ---
+  // --- HANDLERS (Giữ nguyên) ---
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) { setImageFile(file); setPreviewUrl(URL.createObjectURL(file)); }
@@ -88,6 +89,11 @@ function BlogContent() {
     localStorage.setItem('voted_posts', JSON.stringify(Array.from(newVotes)));
   };
 
+  // SỬA: Hàm Logout cũng phải về /blog
+  const handleLogout = () => {
+    window.location.href = "/blog"; 
+  };
+
   const getBtnStyle = (postId: string) => votedPosts.has(postId) ? { opacity: 0.5, cursor: 'not-allowed' } : {};
   
   return (
@@ -99,6 +105,13 @@ function BlogContent() {
             <p className="page-subtitle">Nơi Lucifer cung cấp bằng chứng về số tiền của bạn đã đi đâu và đến nơi nào!</p>
         </div>
       </div>
+
+      {/* Nút Logout (Chỉ hiện khi là Admin) - Thêm vào cho tiện */}
+      {isAdmin && (
+        <button onClick={handleLogout} style={{marginBottom: 20, background: '#333', color: '#fff', border: '1px solid #555', padding: '5px 10px', cursor: 'pointer'}}>
+          Đăng xuất (Thoát Admin)
+        </button>
+      )}
 
       {/* FORM ADMIN */}
       {isAdmin && (
@@ -166,8 +179,7 @@ function BlogContent() {
   );
 }
 
-// 2. Đây là Vỏ (Wrapper) - Bọc Ruột bằng Suspense
-// Next.js sẽ hết báo lỗi nhờ cái này
+// 2. Hàm Wrapper để không bị lỗi Build
 export default function BlogPage() {
   return (
     <Suspense fallback={<div style={{color: '#fff', padding: 20}}>Đang tải dữ liệu...</div>}>
