@@ -51,7 +51,7 @@ export default function RootLayout({
             <Link href="/">Home</Link>
             <Link href="/member">Member</Link>
             <Link href="/donate">Donate</Link>
-            <Link href="/list">List</Link>
+            <Link href="/blog">List</Link>
             <Link href="/help">Help</Link>
             <Link href="/admin">Login</Link>
           </nav>

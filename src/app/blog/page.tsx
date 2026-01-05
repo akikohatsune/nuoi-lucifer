@@ -30,7 +30,7 @@ export default function BlogPage() {
     const authCode = searchParams.get('auth');
     if (authCode === 'success') {
         setIsAdmin(true);
-        router.replace('/list'); 
+        router.replace('/blog'); 
     }
   }, [searchParams, router]);
 

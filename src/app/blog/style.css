@@ -3,16 +3,6 @@
 /* 1. GLOBAL RESET CHO TRANG BLOG */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
-mikubox, mikusect, mikunav, mikuheader, mikufooter, mikumain, 
-miku1, miku2, miku3, miku4, miku5, miku6, mikup, mikuhr, 
-mikublock, mikufigure, mikuform, mikufieldset, mikudetails, mikuli {
-    display: block !important; /* Dùng !important để ép trình duyệt nghe lời */
-    width: 100%; /* Chiếm hết chiều ngang */
-}
-
-mikubtn, mikucin, mikupic, mikuselect, mikutextarea {
-    display: inline-block !important;
-}
 
 body { 
     background-color: #333 !important; 

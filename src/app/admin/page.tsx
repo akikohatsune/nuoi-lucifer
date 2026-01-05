@@ -30,7 +30,7 @@ export default function AdminLogin() {
 
       if (isValid) {
         // Nếu Server bảo đúng -> Chuyển trang
-        router.push("/list?auth=success"); 
+        router.push("/blog?auth=success"); 
       } else {
         // Nếu Server bảo sai
         setError("Key không đúng!");
