@@ -9,7 +9,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Nuôi Lucifer!",
     description: "Tôi nghèo, tôi cần tiền, nhưng tôi KHÔNG MẤT LƯƠNG TÂM! Mỗi đồng tiền các bạn gửi, tôi sẽ chi tiêu rõ ràng.",
-    url: "https://nuoilucifer.web.app/",
     siteName: "Nuôi Lucifer",
     images: [
       {
@@ -52,8 +51,8 @@ export default function RootLayout({
             <Link href="/">Home</Link>
             <Link href="/member">Member</Link>
             <Link href="/donate">Donate</Link>
-            <Link href="/help">Help</Link>
             <Link href="/list">List</Link>
+            <Link href="/help">Help</Link>
             <Link href="/admin">Login</Link>
           </nav>
         </header>
