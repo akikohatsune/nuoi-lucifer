@@ -1,8 +1,6 @@
+"use client"; // Dòng này luôn phải ở đầu tiên
 
-
-"use client";
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react'; 
 import { db } from '@/lib/firebase';
 import { collection, addDoc, onSnapshot, query, orderBy, updateDoc, doc, increment, deleteDoc } from 'firebase/firestore';
 import { useRouter, useSearchParams } from 'next/navigation'; 
@@ -11,9 +9,10 @@ import './style.css';
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "";
 const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "";
 
-export default function BlogPage() {
+// 1. Đây là Ruột (Logic chính) - Đổi tên hàm, bỏ chữ export default
+function BlogContent() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams(); // Cái này gây lỗi nếu không bọc Suspense
   
   const [posts, setPosts] = useState<any[]>([]);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -27,16 +26,16 @@ export default function BlogPage() {
   const [isUploading, setIsUploading] = useState(false);
   const [votedPosts, setVotedPosts] = useState<Set<string>>(new Set());
 
-  // --- LOGIC AUTH (Giữ nguyên) ---
+  // --- LOGIC AUTH ---
   useEffect(() => {
     const authCode = searchParams.get('auth');
     if (authCode === 'success') {
         setIsAdmin(true);
-        router.replace('/blog'); 
+        router.replace('/list'); 
     }
   }, [searchParams, router]);
 
-  // --- LOGIC DATA (Giữ nguyên) ---
+  // --- LOGIC DATA ---
   useEffect(() => {
     const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -49,7 +48,7 @@ export default function BlogPage() {
     return () => unsubscribe();
   }, []);
 
-  // --- CÁC HÀM XỬ LÝ (Giữ nguyên) ---
+  // --- HANDLERS ---
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) { setImageFile(file); setPreviewUrl(URL.createObjectURL(file)); }
@@ -106,7 +105,6 @@ export default function BlogPage() {
         <div className="admin-section fade-in">
             <div className="post-form">
                 <div className="form-header">Tạo một bản sao kê mới...</div>
-                
                 <div className="form-row">
                     <select value={postType} onChange={(e:any) => setPostType(e.target.value)}>
                         <option value="NOTE">Thông báo</option>
@@ -114,9 +112,7 @@ export default function BlogPage() {
                     </select>
                     <input placeholder="Tiêu đề..." value={title} onChange={e => setTitle(e.target.value)} />
                 </div>
-                
                 <textarea placeholder="Nội dung bài viết..." value={content} onChange={e => setContent(e.target.value)} />
-
                 <div className="image-upload-area">
                     <label htmlFor="file-input" className="custom-file-upload">Add Image...</label>
                     <input id="file-input" type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
@@ -127,7 +123,6 @@ export default function BlogPage() {
                         </div>
                     )}
                 </div>
-
                 <button className="btn-post" onClick={handlePost} disabled={isUploading}>
                     {isUploading ? "ĐANG TẢI LÊN..." : "ĐĂNG BÀI"}
                 </button>
@@ -168,5 +163,15 @@ export default function BlogPage() {
         ))}
       </div>
     </div>
+  );
+}
+
+// 2. Đây là Vỏ (Wrapper) - Bọc Ruột bằng Suspense
+// Next.js sẽ hết báo lỗi nhờ cái này
+export default function BlogPage() {
+  return (
+    <Suspense fallback={<div style={{color: '#fff', padding: 20}}>Đang tải dữ liệu...</div>}>
+      <BlogContent />
+    </Suspense>
   );
 }
