@@ -23,7 +23,7 @@ export default function Home() {
           <h2 style={{ color: '#ff66aa' }}>Tại Sao Nên Nuôi Lucifer?</h2>
           <div className="badges">
             <ul>
-              <li>🥉 <span className="highlight">Sao Kê Cực Kì Nhanh:</span> Cập nhật Lucifer stream xong! và do anh bạn Kome ko có server riêng!</li>
+              <li>🥉 <span className="highlight">Sao Kê Cực Kì Nhanh:</span> Cập nhật Lucifer stream xong!</li>
               <li>🥈 <span className="highlight">Minh Bạch:</span> Tôi còn báo cáo cả việc mua ly trà sữa!</li>
               <li>🥇 <span className="highlight">Phản Hồi Siêu Nhanh</span> Trả lời inbox nhanh hơn cả ánh sáng</li>
             </ul>

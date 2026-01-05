@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+.admin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.login-card {
+    background-color: #333;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 30px;
+}
+
+/* --- STYLE VÙNG KÉO THẢ (UPLOAD ZONE) --- */
+.upload-zone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Cho cao lên tí để dễ ném file vào */
+    width: 100%;
+    background-color: #252525;
+    color: #ff66aa;
+    border: 2px dashed #ff66aa;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.upload-zone:hover {
+    background-color: rgba(255, 102, 170, 0.1);
+    transform: translateY(-2px);
+}
+
+/* --- HIỆU ỨNG KHI ĐANG KÉO FILE VÀO --- */
+.upload-zone.drag-active {
+    background-color: #ff66aa; /* Đổi nền thành hồng đặc */
+    color: #fff;               /* Chữ trắng */
+    border-style: solid;       /* Viền liền */
+    transform: scale(1.05);    /* Phóng to lên tí */
+    box-shadow: 0 0 15px rgba(255, 102, 170, 0.5);
+}
+
+.error-msg {
+    margin-top: 20px;
+    color: #ff4d4d;
+    background: rgba(255, 77, 77, 0.1);
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
