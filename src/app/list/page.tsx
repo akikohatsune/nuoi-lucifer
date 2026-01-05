@@ -11,11 +11,9 @@ const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "";
 
 export default function BlogPage() {
   const router = useRouter();
-  const searchParams = useSearchParams(); // Hook lấy tham số trên URL
+  const searchParams = useSearchParams();
   
   const [posts, setPosts] = useState<any[]>([]);
-  
-  // Mặc định là FALSE (chưa đăng nhập)
   const [isAdmin, setIsAdmin] = useState(false);
   
   // State Form
@@ -27,28 +25,21 @@ export default function BlogPage() {
   const [isUploading, setIsUploading] = useState(false);
   const [votedPosts, setVotedPosts] = useState<Set<string>>(new Set());
 
-  // --- 1. LOGIC CHECK ADMIN MỚI (DỰA VÀO URL) ---
+  // --- LOGIC AUTH (Giữ nguyên) ---
   useEffect(() => {
-    // Kiểm tra xem trên link có ?auth=success không
     const authCode = searchParams.get('auth');
-
     if (authCode === 'success') {
-        // Nếu có -> Xác nhận là Admin
         setIsAdmin(true);
-        
-        // Sau đó xóa sạch dấu vết trên URL để nhìn cho đẹp (và để F5 là mất)
         router.replace('/list'); 
     }
   }, [searchParams, router]);
 
-  // 2. Tải bài viết (Giữ nguyên)
+  // --- LOGIC DATA (Giữ nguyên) ---
   useEffect(() => {
     const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       setPosts(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     });
-    
-    // Load lịch sử vote
     if (typeof window !== 'undefined') {
         const savedVotes = localStorage.getItem('voted_posts');
         if (savedVotes) setVotedPosts(new Set(JSON.parse(savedVotes)));
@@ -56,7 +47,7 @@ export default function BlogPage() {
     return () => unsubscribe();
   }, []);
 
-  // ... (CÁC HÀM XỬ LÝ ẢNH, POST, REACT GIỮ NGUYÊN) ...
+  // --- CÁC HÀM XỬ LÝ (Giữ nguyên) ---
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) { setImageFile(file); setPreviewUrl(URL.createObjectURL(file)); }
@@ -98,25 +89,22 @@ export default function BlogPage() {
 
   const getBtnStyle = (postId: string) => votedPosts.has(postId) ? { opacity: 0.5, cursor: 'not-allowed' } : {};
   
-  // Hàm Logout (Chỉ cần reload trang là xong)
-  const handleLogout = () => {
-    window.location.href = "/list"; // Reload lại trang blog sạch -> Tự mất quyền admin
-  };
-
   return (
     <div className="layout-container">
-      <div className="header-box" style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start'}}>
+      {/* HEADER */}
+      <div className="header-box">
         <div>
             <h1 className="page-title">Tiền của tôi đã đi đâu😭?</h1>
             <p className="page-subtitle">Nơi Lucifer cung cấp bằng chứng về số tiền của bạn đã đi đâu và đến nơi nào!</p>
         </div>
       </div>
 
-      {/* FORM CHỈ HIỆN KHI ĐANG CÓ SESSION (isAdmin = true) */}
+      {/* FORM ADMIN */}
       {isAdmin && (
         <div className="admin-section fade-in">
             <div className="post-form">
                 <div className="form-header">Tạo một bản sao kê mới...</div>
+                
                 <div className="form-row">
                     <select value={postType} onChange={(e:any) => setPostType(e.target.value)}>
                         <option value="NOTE">Thông báo</option>
@@ -124,11 +112,11 @@ export default function BlogPage() {
                     </select>
                     <input placeholder="Tiêu đề..." value={title} onChange={e => setTitle(e.target.value)} />
                 </div>
+                
                 <textarea placeholder="Nội dung bài viết..." value={content} onChange={e => setContent(e.target.value)} />
 
                 <div className="image-upload-area">
-                    <label htmlFor="file-input" className="custom-file-upload">Add Image...</label><br>
-                    </br>
+                    <label htmlFor="file-input" className="custom-file-upload">Add Image...</label>
                     <input id="file-input" type="file" accept="image/*" onChange={handleImageChange} style={{ display: 'none' }} />
                     {previewUrl && (
                         <div className="image-preview-box">
@@ -137,6 +125,7 @@ export default function BlogPage() {
                         </div>
                     )}
                 </div>
+
                 <button className="btn-post" onClick={handlePost} disabled={isUploading}>
                     {isUploading ? "ĐANG TẢI LÊN..." : "ĐĂNG BÀI"}
                 </button>
@@ -144,7 +133,7 @@ export default function BlogPage() {
         </div>
       )}
 
-      {/* FEED (Luôn hiển thị) */}
+      {/* FEED */}
       <div className="feed-container">
         {posts.map((post) => (
             <div key={post.id} className="fade-in">
