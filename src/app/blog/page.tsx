@@ -109,7 +109,7 @@ function BlogContent() {
       {/* Nút Logout (Chỉ hiện khi là Admin) - Thêm vào cho tiện */}
       {isAdmin && (
         <button onClick={handleLogout} style={{marginBottom: 20, background: '#333', color: '#fff', border: '1px solid #555', padding: '5px 10px', cursor: 'pointer'}}>
-          Đăng xuất (Thoát Admin)
+          Đăng xuất
         </button>
       )}
 
