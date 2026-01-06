@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link"; // Import thẻ Link để chuyển trang không cần load lại
 import "./globals.css"; // Import CSS toàn cục
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // Cấu hình Metadata (SEO & Embed Discord) - Dùng chung cho cả web
 export const metadata: Metadata = {
