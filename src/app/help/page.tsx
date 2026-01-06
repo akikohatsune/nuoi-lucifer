@@ -4,6 +4,11 @@ import React from 'react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 <SpeedInsights/>
 
+// Import and use the <Analytics/> React component into your app's layout.
+import { Analytics } from "@vercel/analytics/next"
+<Analytics/>
+
+
 export default function HelpPage() {
   return (
     <div className="container">

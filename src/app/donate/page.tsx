@@ -4,6 +4,11 @@
 import { SpeedInsights } from "@vercel/speed-insights/next"
 <SpeedInsights/>
 
+// Import and use the <Analytics/> React component into your app's layout.
+import { Analytics } from "@vercel/analytics/next"
+<Analytics/>
+
+
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 

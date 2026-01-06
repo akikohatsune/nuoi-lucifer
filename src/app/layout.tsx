@@ -6,6 +6,10 @@ import "./globals.css"; // Import CSS toàn cục
 import { SpeedInsights } from "@vercel/speed-insights/next"
 <SpeedInsights/>
 
+// Import and use the <Analytics/> React component into your app's layout.
+import { Analytics } from "@vercel/analytics/next"
+<Analytics/>
+
 // Cấu hình Metadata (SEO & Embed Discord) - Dùng chung cho cả web
 
 export const metadata: Metadata = {
