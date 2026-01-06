@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "Nuôi Lucifer",
     images: [
       {
-        url: "/image/miku.png", // Ảnh đại diện khi gửi link (nhớ để ảnh trong thư mục public/image)
+        url: "/image/miku.png", 
         width: 630,
         height: 630,
       },
