@@ -1,5 +1,9 @@
 "use client";
 
+// Import SpeedInsights từ Vercel để tối ưu hiệu suất
+import { SpeedInsights } from "@vercel/speed-insights/next"
+<SpeedInsights/>
+
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 // Import hàm check từ server về

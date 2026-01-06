@@ -1,5 +1,9 @@
 import React from 'react';
 
+// Import SpeedInsights từ Vercel để tối ưu hiệu suất
+import { SpeedInsights } from "@vercel/speed-insights/next"
+<SpeedInsights/>
+
 export default function HelpPage() {
   return (
     <div className="container">
