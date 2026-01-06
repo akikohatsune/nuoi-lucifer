@@ -3,12 +3,10 @@ import Link from "next/link"; // Import thẻ Link để chuyển trang không c
 import "./globals.css"; // Import CSS toàn cục
 
 // Import SpeedInsights từ Vercel để tối ưu hiệu suất
-import { SpeedInsights } from "@vercel/speed-insights/next"
-<SpeedInsights/>
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Import and use the <Analytics/> React component into your app's layout.
-import { Analytics } from "@vercel/analytics/next"
-<Analytics/>
+import { Analytics } from "@vercel/analytics/next";
 
 // Cấu hình Metadata (SEO & Embed Discord) - Dùng chung cho cả web
 
@@ -68,7 +66,8 @@ export default function RootLayout({
         
         {/* --- NỘI DUNG CỦA TỪNG TRANG SẼ HIỆN Ở DƯỚI ĐÂY --- */}
         {children}
-        
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
