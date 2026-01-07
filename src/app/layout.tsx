@@ -54,14 +54,20 @@ export default function RootLayout({
           </Link>
           
           {/* Menu điều hướng */}
-          <nav className="nav-links">
-            <Link href="/">Home</Link>
-            <Link href="/member">Member</Link>
-            <Link href="/donate">Donate</Link>
-            <Link href="/blog">List</Link>
-            <Link href="/help">Help</Link>
-            <Link href="/admin">Login</Link>
-          </nav>
+          <details className="nav-menu">
+            <summary>
+              <i className="fa-solid fa-bars" aria-hidden="true" />
+              <span>Menu</span>
+            </summary>
+            <nav className="nav-links">
+              <Link href="/">Home</Link>
+              <Link href="/member">Member</Link>
+              <Link href="/donate">Donate</Link>
+              <Link href="/blog">List</Link>
+              <Link href="/help">Help</Link>
+              <Link href="/admin">Login</Link>
+            </nav>
+          </details>
         </header>
         
         {/* --- NỘI DUNG CỦA TỪNG TRANG SẼ HIỆN Ở DƯỚI ĐÂY --- */}
