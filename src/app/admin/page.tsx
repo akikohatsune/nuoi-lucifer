@@ -1,89 +1,103 @@
 "use client";
 
-// Import SpeedInsights từ Vercel để tối ưu hiệu suất
-import { SpeedInsights } from "@vercel/speed-insights/next"
-<SpeedInsights/>
-
-// Import and use the <Analytics/> React component into your app's layout.
-import { Analytics } from "@vercel/analytics/next"
-<Analytics/>
-
-
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-// Import hàm check từ server về
-import { verifyKeyAction } from '../actions'; 
-import './style.css';
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import {
+  inMemoryPersistence,
+  onAuthStateChanged,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import "./style.css";
 
 export default function AdminLogin() {
   const router = useRouter();
-  const [error, setError] = useState('');
-  const [isDragging, setIsDragging] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // Hàm check file
-  const checkKeyFile = (file: File) => {
-    if (!file) return;
-
-    if (file.name !== "key.mikustart") {
-      setError("Sai key!");
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = async (event) => { // Thêm async
-      const fileContent = (event.target?.result as string).trim();
-      
-      // --- THAY ĐỔI LỚN Ở ĐÂY ---
-      // Không so sánh trực tiếp nữa. Gửi lên Server check hộ.
-      const isValid = await verifyKeyAction(fileContent);
-
-      if (isValid) {
-        // Nếu Server bảo đúng -> Chuyển trang
-        router.push("/blog?auth=success"); 
-      } else {
-        // Nếu Server bảo sai
-        setError("Key không đúng!");
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        router.replace("/blog");
       }
-    };
-    reader.readAsText(file);
-  };
+    });
 
-  // ... (Các phần Drag & Drop giữ nguyên) ...
-  const handleDragOver = (e: React.DragEvent) => { e.preventDefault(); setIsDragging(true); };
-  const handleDragLeave = (e: React.DragEvent) => { e.preventDefault(); setIsDragging(false); };
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault(); setIsDragging(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file) checkKeyFile(file);
-  };
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) checkKeyFile(file);
+    return () => unsubscribe();
+  }, [router]);
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setError("");
+    setLoading(true);
+    try {
+      await setPersistence(auth, inMemoryPersistence);
+      await signInWithEmailAndPassword(auth, email.trim(), password);
+      router.replace("/blog");
+    } catch (err) {
+      const message =
+        (err as any)?.code ||
+        (err as any)?.message ||
+        "Could not sign in. Please check your credentials.";
+      setError(message);
+      console.error("Sign-in failed:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="admin-container">
       <div className="login-card">
         <h1 className="title">Login</h1>
-        {/* 1d về chỗ!*/}
         <p className="subtitle">
-            Phiên đăng nhập sẽ hết hạn ngay khi tải lại trang.<br></br>
-            Chức năng này chỉ dành cho Staff!
-            </p>
-        <label 
-            htmlFor="key-file" 
-            className={`upload-zone ${isDragging ? 'drag-active' : ''}`}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-        >
-            {isDragging ? "THẢ RA ĐỂ LOGIN!" : "Tải lên Key"}
-        </label>
-        
-        <input id="key-file" type="file" accept=".mikustart*" onChange={handleFileSelect} style={{ display: 'none' }} />
+          Sign in with account to manage blog content.
+        </p>
+        <form className="login-form" onSubmit={handleSubmit} autoComplete="off">
+          <label className="form-label" htmlFor="email">
+            Email
+          </label>
+          <input
+            id="email"
+            className="text-input"
+            type="email"
+            autoComplete="off"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="you@example.com"
+            required
+          />
+
+          <label className="form-label" htmlFor="password">
+            Password
+          </label>
+          <input
+            id="password"
+            className="text-input"
+            type="password"
+            autoComplete="off"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="********"
+            required
+          />
+
+          <button className="primary-btn" type="submit" disabled={loading}>
+            {loading ? "Signing in..." : "Sign in"}
+          </button>
+          <p className="helper">
+            Accounts are managed in Firebase Auth. Contact an admin if you need access!
+          </p>
+        </form>
 
         {error && <div className="error-msg">{error}</div>}
       </div>
+      <SpeedInsights />
+      <Analytics />
     </div>
   );
 }

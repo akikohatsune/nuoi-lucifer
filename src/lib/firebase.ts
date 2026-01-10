@@ -1,5 +1,6 @@
 // src/lib/firebase.ts
-import { initializeApp } from "firebase/app";
+import { getApps, initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 
@@ -14,5 +15,7 @@ const firebaseConfig = {
   measurementId: "G-68KGL095JR"
 };
 
-const app = initializeApp(firebaseConfig);
+const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+
+export const auth = getAuth(app);
 export const db = getFirestore(app);
