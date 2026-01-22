@@ -1,16 +1,6 @@
 "use client";
 
-// Import SpeedInsights từ Vercel để tối ưu hiệu suất
-import { SpeedInsights } from "@vercel/speed-insights/next"
-<SpeedInsights/>
-
-// Import and use the <Analytics/> React component into your app's layout.
-import { Analytics } from "@vercel/analytics/next"
-<Analytics/>
-
-
 import React, { useState, useEffect } from 'react';
-import Papa from 'papaparse';
 
 // --- CẤU HÌNH ---
 const BANK_ID = "TPB";
@@ -40,6 +30,7 @@ export default function DonatePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const { default: Papa } = await import('papaparse');
         const response = await fetch(SHEET_CSV_URL);
         const csvText = await response.text();
         

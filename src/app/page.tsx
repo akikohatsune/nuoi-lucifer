@@ -1,7 +1,3 @@
-// Import SpeedInsights từ Vercel để tối ưu hiệu suất
-import { SpeedInsights } from "@vercel/speed-insights/next"
-<SpeedInsights/>
-
 export default function Home() {
   return (
     <main>
@@ -19,7 +15,8 @@ export default function Home() {
         <section>
           <div className="info-box">
             <strong>#Kome-note</strong><br />
-            Đã hoàn thành chuyển code sang ReactJS và NextJS, hệ thống sao kê tạm thời là bán tự động. Tôi sẽ update lên tự động sau :sob:
+            Tôi sẽ thêm tính năng chat online ngay trên chính trang này (và chắc chắn là realtime!)<br></br>
+            Tất cả chỉ là dự kiến, Have a good day!
           </div>
         </section>
 

@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link"; // Import thẻ Link để chuyển trang không cần load lại
 import "./globals.css"; // Import CSS toàn cục
+import NavMenu from "./components/NavMenu";
 
 // Import SpeedInsights từ Vercel để tối ưu hiệu suất
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -26,6 +27,9 @@ export const metadata: Metadata = {
     ],
     type: "website",
   },
+};
+
+export const viewport: Viewport = {
   themeColor: "#ff66aa",
 };
 
@@ -54,20 +58,7 @@ export default function RootLayout({
           </Link>
           
           {/* Menu điều hướng */}
-          <details className="nav-menu">
-            <summary>
-              <i className="fa-solid fa-bars" aria-hidden="true" />
-              <span>Menu</span>
-            </summary>
-            <nav className="nav-links">
-              <Link href="/">Home</Link>
-              <Link href="/member">Member</Link>
-              <Link href="/donate">Donate</Link>
-              <Link href="/blog">List</Link>
-              <Link href="/help">Help</Link>
-              <Link href="/admin">Login</Link>
-            </nav>
-          </details>
+          <NavMenu />
         </header>
         
         {/* --- NỘI DUNG CỦA TỪNG TRANG SẼ HIỆN Ở DƯỚI ĐÂY --- */}

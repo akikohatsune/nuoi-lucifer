@@ -1,0 +1,82 @@
+.changelog-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.changelog-lead {
+  color: #cfcfcf;
+  margin: 0 0 8px;
+}
+
+.changelog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.changelog-card {
+  background-color: #2f2f2f;
+  border: 1px solid #444;
+  border-left: 4px solid #ff66aa;
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+
+.changelog-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.changelog-date {
+  background-color: #333;
+  color: #ffcc00;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.4px;
+}
+
+.changelog-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.changelog-badge {
+  background-color: #d93d3d;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.changelog-description {
+  margin: 0;
+  color: #ddd;
+  line-height: 1.5;
+}
+
+.changelog-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #ddd;
+}
+
+.changelog-card li {
+  margin: 6px 0;
+}
+
+@media (max-width: 600px) {
+  .changelog-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import Papa from 'papaparse';
 import { Montserrat } from 'next/font/google';
 
 // --- QUAN TRỌNG: Import file CSS vừa tạo ---
@@ -33,16 +32,29 @@ export default function AlertOverlay() {
         return; 
     }
 
+    let isMounted = true;
+    let papaParser: (typeof import('papaparse'))['default'] | null = null;
+
+    const getPapa = async () => {
+      if (papaParser) return papaParser;
+      const mod = await import('papaparse');
+      papaParser = mod.default;
+      return papaParser;
+    };
+
     // --- CHẾ ĐỘ CHẠY THẬT ---
     const checkDonation = async () => {
       try {
+        const Papa = await getPapa();
         const noCacheUrl = `${SHEET_CSV_URL}&t=${Date.now()}`;
         const response = await fetch(noCacheUrl);
         const csvText = await response.text();
         
+        if (!isMounted) return;
         Papa.parse(csvText, {
           header: true, skipEmptyLines: true,
           complete: (results: any) => {
+            if (!isMounted) return;
             const rowData = results.data;
             if (rowData.length === 0) return;
             const newest = rowData[rowData.length - 1];
@@ -81,7 +93,10 @@ export default function AlertOverlay() {
     };
 
     const interval = setInterval(checkDonation, CHECK_INTERVAL);
-    return () => clearInterval(interval);
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, []);
 
   return (

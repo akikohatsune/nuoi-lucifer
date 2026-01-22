@@ -3,14 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import './status.css'; // Import CSS
 
-// Import SpeedInsights từ Vercel để tối ưu hiệu suất
-import { SpeedInsights } from "@vercel/speed-insights/next"
-<SpeedInsights/>
-
-// Import and use the <Analytics/> React component into your app's layout.
-import { Analytics } from "@vercel/analytics/next"
-<Analytics/>
-
 // Link CSV của bạn
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEAUBRs8RmNLMlelOmHJoc4369oJ3CDD8s27L5JKAM54hQ6r6aAFl-J0KYKrrVJWYKz2VOUo5ZLJ3s/pub?output=csv";
 

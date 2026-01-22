@@ -1,9 +1,5 @@
 import Link from 'next/link'
 
-// Import SpeedInsights từ Vercel để tối ưu hiệu suất
-import { SpeedInsights } from "@vercel/speed-insights/next"
-<SpeedInsights/>
-
 export default function NotFound() {
   return (
     <div style={{ 

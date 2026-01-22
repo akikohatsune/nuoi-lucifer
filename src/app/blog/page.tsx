@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { auth, db } from "@/lib/firebase";
 import {
   collection,
@@ -25,6 +25,7 @@ function BlogContent() {
   const [posts, setPosts] = useState<any[]>([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [authReady, setAuthReady] = useState(false);
+  const [hasNewPosts, setHasNewPosts] = useState(false);
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -33,6 +34,7 @@ function BlogContent() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [votedPosts, setVotedPosts] = useState<Set<string>>(new Set());
+  const latestPostId = useRef<string | null>(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -54,7 +56,14 @@ function BlogContent() {
   useEffect(() => {
     const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      setPosts(snapshot.docs.map((d) => ({ id: d.id, ...d.data() })));
+      const nextPosts = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
+      const nextTopId = snapshot.docs[0]?.id ?? null;
+      const prevTopId = latestPostId.current;
+      setPosts(nextPosts);
+      if (prevTopId && nextTopId && nextTopId !== prevTopId) {
+        setHasNewPosts(true);
+      }
+      latestPostId.current = nextTopId;
     });
     if (typeof window !== "undefined") {
       const savedVotes = localStorage.getItem("voted_posts");
@@ -83,6 +92,23 @@ function BlogContent() {
     return data.secure_url;
   };
 
+  const notifyDiscord = async (
+    message: string,
+    details: string,
+    imageUrl: string,
+    title?: string
+  ) => {
+    try {
+      await fetch("/api/discord-webhook", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, message, details, imageUrl }),
+      });
+    } catch (error) {
+      console.warn("Discord webhook failed:", error);
+    }
+  };
+
   const handlePost = async () => {
     if (!isAdmin) {
       alert("Only admins can post.");
@@ -101,6 +127,7 @@ function BlogContent() {
         createdAt: new Date().toISOString(),
         reactions: { love: 0, fire: 0 },
       });
+      await notifyDiscord("có bài viết mới kìa", content, imageUrl, title);
       setTitle("");
       setContent("");
       setImageFile(null);
@@ -134,6 +161,13 @@ function BlogContent() {
     await signOut(auth);
   };
 
+  const handleViewNewPosts = () => {
+    setHasNewPosts(false);
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   const getBtnStyle = (postId: string) =>
     votedPosts.has(postId) ? { opacity: 0.5, cursor: "not-allowed" } : {};
 
@@ -147,6 +181,15 @@ function BlogContent() {
           </p>
         </div>
       </div>
+
+      {hasNewPosts && (
+        <div className="new-post-banner" role="status">
+          <span>Có bài viết mới vừa được đăng.</span>
+          <button className="btn-new-post" onClick={handleViewNewPosts}>
+            Xem ngay
+          </button>
+        </div>
+      )}
 
       {authReady && isAdmin && (
         <div style={{ display: "flex", gap: 12, marginBottom: 20 }}>
