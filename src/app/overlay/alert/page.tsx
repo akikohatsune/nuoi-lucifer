@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import Papa from 'papaparse';
 import { Montserrat } from 'next/font/google';
 
 // --- QUAN TRỌNG: Import file CSS vừa tạo ---
@@ -33,19 +34,10 @@ export default function AlertOverlay() {
     }
 
     let isMounted = true;
-    let papaParser: (typeof import('papaparse'))['default'] | null = null;
-
-    const getPapa = async () => {
-      if (papaParser) return papaParser;
-      const mod = await import('papaparse');
-      papaParser = mod.default;
-      return papaParser;
-    };
 
     // --- CHẾ ĐỘ CHẠY THẬT ---
     const checkDonation = async () => {
       try {
-        const Papa = await getPapa();
         const noCacheUrl = `${SHEET_CSV_URL}&t=${Date.now()}`;
         const response = await fetch(noCacheUrl);
         const csvText = await response.text();
