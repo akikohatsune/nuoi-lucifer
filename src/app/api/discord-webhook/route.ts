@@ -34,6 +34,7 @@ export async function POST(req: Request) {
 
   const payload: {
     embeds?: Array<{
+      color?: number;
       title?: string;
       description?: string;
       image?: { url: string };
@@ -41,14 +42,19 @@ export async function POST(req: Request) {
   } = {};
 
   const embed: {
+    color?: number;
     title?: string;
     description?: string;
     image?: { url: string };
   } = {};
 
-  if (title) embed.title = title;
+  embed.color = 0xff69b4;
 
-  const description = [message, details].filter(Boolean).join("\n");
+  const swappedTitle = message;
+  const swappedMessage = title;
+  if (swappedTitle) embed.title = swappedTitle;
+
+  const description = [swappedMessage, details].filter(Boolean).join("\n");
   if (description) embed.description = description;
 
   if (imageUrl) {

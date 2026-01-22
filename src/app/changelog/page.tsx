@@ -2,6 +2,22 @@ import "./style.css";
 
 const entries = [
   {
+    id: "a24e0c1",
+    date: "2026-01-22",
+    description:
+      "Thêm thư viện PapaParse vào AlertOverlay và cải thiện cấu trúc tsconfig.json",
+  },
+  {
+    id: "c1c3850",
+    date: "2026-01-22",
+    description: 'Thêm chỉ thị "use client" vào file page.tsx',
+  },
+  {
+    id: "2a6e8c1",
+    date: "2026-01-22",
+    description: "Thêm tính năng thông báo bài viết mới và cải thiện giao diện menu điều hướng",
+  },
+  {
     id: "d96a7cf",
     date: "2026-01-11",
     description: "“Add Firebase auth for admin/blog” “Tweak login UI and unify input/button sizing” “Check admin role via Firestore doc” “Update Firestore rules and admin layout”",
