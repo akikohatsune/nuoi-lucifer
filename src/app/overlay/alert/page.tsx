@@ -6,29 +6,24 @@ import { Montserrat } from 'next/font/google';
 
 import './style.css'; 
 
-// Font dùng cho overlay.
 const montserrat = Montserrat({
   subsets: ['latin', 'vietnamese'],
   weight: ['400', '500', '600', '700', '900'],
   display: 'swap',
 });
 
-// Cấu hình polling dữ liệu.
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEAUBRs8RmNLMlelOmHJoc4369oJ3CDD8s27L5JKAM54hQ6r6aAFl-J0KYKrrVJWYKz2VOUo5ZLJ3s/pub?output=csv";
 const CHECK_INTERVAL = 3000;
-const TEST_MODE = false; // Bật true để preview giao diện không cần dữ liệu thật.
+const TEST_MODE = false;
 
 export default function AlertOverlay() {
   const [data, setData] = useState({ name: 'Người Test', amount: '500.000đ', content: 'CSS đã được tách ra file riêng!' });
   const [animState, setAnimState] = useState(''); 
   
-  // Lưu các STT đã hiển thị để tránh alert lặp.
   const processedStts = useRef<Set<string>>(new Set());
-  // Bỏ qua lần tải đầu tiên để không hiện alert cũ.
   const isFirstRun = useRef<boolean>(true);
 
   useEffect(() => {
-    // Chế độ test: hiển thị mock và dừng polling.
     if (TEST_MODE) {
         setAnimState('show');
         return; 
@@ -36,7 +31,6 @@ export default function AlertOverlay() {
 
     let isMounted = true;
 
-    // Chế độ chạy thật: polling CSV và hiển thị alert mới nhất.
     const checkDonation = async () => {
       try {
         const noCacheUrl = `${SHEET_CSV_URL}&t=${Date.now()}`;

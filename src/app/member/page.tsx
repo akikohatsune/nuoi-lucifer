@@ -1,8 +1,7 @@
-"use client"; // Client component: cần Clipboard API + DOM.
+"use client";
 
 import React, { useState } from 'react';
 
-// Danh sách member hiển thị trên trang.
 const members = [
   {
     id: 1,
@@ -10,7 +9,7 @@ const members = [
     role: "Organizer",
     stats: "Luckiness // Lucifer, The D€vil Corporated",
     avatarBg: "av-1",
-    imgSrc: "/image/lucifer.jpg", // Ảnh nằm trong public/image
+    imgSrc: "/image/lucifer.jpg",
     socials: {
       youtube: "https://www.youtube.com/@ybLuc1fer666",
       discord: "tdc.luc1fer"
@@ -55,18 +54,15 @@ const members = [
   }
 ];
 
-// Nút Discord: copy username + tooltip.
 const DiscordButton = ({ username }: { username: string }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const handleCopy = () => {
-    // Hiển thị tooltip trong 2s.
     const triggerTooltip = () => {
       setShowTooltip(true);
       setTimeout(() => setShowTooltip(false), 2000);
     };
 
-    // Cách 1: Clipboard API (HTTPS/localhost).
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(username)
         .then(triggerTooltip)
@@ -75,12 +71,10 @@ const DiscordButton = ({ username }: { username: string }) => {
           alert('Không thể copy: ' + username);
         });
     } 
-    // Cách 2: Fallback dùng textarea (chạy mọi nơi).
     else {
       const textArea = document.createElement("textarea");
       textArea.value = username;
       
-      // Giấu input để không ảnh hưởng layout.
       textArea.style.position = "fixed";
       textArea.style.left = "-9999px";
       

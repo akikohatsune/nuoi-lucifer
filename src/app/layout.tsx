@@ -5,7 +5,6 @@ import NavMenu from "./components/NavMenu";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
-// Metadata SEO + social share dùng chung toàn site.
 export const metadata: Metadata = {
   title: "Nuôi Lucifer!",
   description: "Tôi nghèo, tôi cần tiền, nhưng tôi KHÔNG MẤT LƯƠNG TÂM!",
@@ -36,7 +35,6 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <head>
-        {/* Font Awesome cho icon GitHub/Discord trên toàn site */}
         <link 
           rel="stylesheet" 
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 

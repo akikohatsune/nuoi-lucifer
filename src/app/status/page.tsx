@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import './status.css';
 
-// CSV public dùng làm endpoint kiểm tra trạng thái.
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEAUBRs8RmNLMlelOmHJoc4369oJ3CDD8s27L5JKAM54hQ6r6aAFl-J0KYKrrVJWYKz2VOUo5ZLJ3s/pub?output=csv";
 
 
@@ -12,14 +11,11 @@ export default function ServiceStatus() {
   const [latency, setLatency] = useState<number>(0);
   const [timeString, setTimeString] = useState<string>('Loading...');
 
-  // Định dạng thời gian hiển thị: hh:mm:ss | today is dd:mm:yy
   const getFormattedTime = () => {
     const now = new Date();
     
-    // Giờ : Phút : Giây
     const time = now.toLocaleTimeString('vi-VN', { hour12: false });
     
-    // Ngày : Tháng : Năm (viết tắt yy)
     const day = String(now.getDate()).padStart(2, '0');
     const month = String(now.getMonth() + 1).padStart(2, '0');
     const year = String(now.getFullYear()).slice(-2);
@@ -32,7 +28,6 @@ export default function ServiceStatus() {
     const start = Date.now();
     
     try {
-      // Thêm tham số thời gian để tránh cache; dùng HEAD để nhẹ payload.
       const res = await fetch(`${SHEET_CSV_URL}&t=${start}`, { method: 'HEAD' });
       
       const end = Date.now();
@@ -47,16 +42,13 @@ export default function ServiceStatus() {
       console.error(error);
       setStatus('offline');
     } finally {
-      // Cập nhật thời gian sau mỗi lần kiểm tra.
       setTimeString(getFormattedTime());
     }
   };
 
   useEffect(() => {
-    // Kiểm tra ngay lần đầu.
     checkService();
 
-    // Lặp lại mỗi 10 giây.
     const interval = setInterval(checkService, 10000);
     return () => clearInterval(interval);
   }, []);
@@ -66,7 +58,6 @@ export default function ServiceStatus() {
       <div className="status-card">
         <h1>System Status</h1>
 
-        {/* Trạng thái tổng */}
         <div className={`status-indicator ${status}`}>
           <span className="dot"></span>
           <span>
@@ -76,13 +67,11 @@ export default function ServiceStatus() {
           </span>
         </div>
 
-        {/* Thông tin chi tiết */}
         <div className="details">
           <p>Target: Google Sheets CSV</p>
           <p>Latency: <strong>{status === 'online' ? `${latency}ms` : '--'}</strong></p>
         </div>
 
-        {/* Thời gian cập nhật */}
         <div className="footer-time">
           {timeString}
         </div>

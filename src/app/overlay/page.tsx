@@ -2,14 +2,12 @@
 
 import React from 'react';
 
-// Cấu hình VietQR.
 const BANK_ID = "TPB";
 const ACCOUNT_NO = "22310062007"; 
 const ACCOUNT_NAME = "DAO GIA KHANH";
 const TEMPLATE = "qr_only";
 
 export default function OverlayQR() {
-  // URL ảnh QR từ VietQR.
   const qrUrl = `https://img.vietqr.io/image/${BANK_ID}-${ACCOUNT_NO}-${TEMPLATE}.png?accountName=${encodeURIComponent(ACCOUNT_NAME)}`;
 
   return (
@@ -20,7 +18,6 @@ export default function OverlayQR() {
       alignItems: 'center',
       background: 'transparent'
     }}>
-      {/* Ẩn layout chung để overlay trong suốt khi add vào OBS */}
       <style jsx global>{`
         header, nav, footer { 
           display: none !important; 

@@ -45,12 +45,12 @@ const entries = [
   {
     id: "42f4d33",
     date: "2026-01-07",
-    description: "// Import SpeedInsights từ Vercel để tối ưu hiệu suất import { SpeedInsights } from \"@vercel/speed-insights/next\" <SpeedInsights/>",
+    description: "Import SpeedInsights from Vercel for performance: import { SpeedInsights } from \"@vercel/speed-insights/next\" <SpeedInsights/>",
   },
   {
     id: "246afbf",
     date: "2026-01-07",
-    description: "// Import SpeedInsights từ Vercel để tối ưu hiệu suất import { SpeedInsights } from \"@vercel/speed-insights/next\" <SpeedInsights/>",
+    description: "Import SpeedInsights from Vercel for performance: import { SpeedInsights } from \"@vercel/speed-insights/next\" <SpeedInsights/>",
   },
   {
     id: "8988d2f",

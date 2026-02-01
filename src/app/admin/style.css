@@ -100,7 +100,6 @@
     background: #ff7ab6;
 }
 
-/* Fix màu autofill của trình duyệt */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
