@@ -1,8 +1,8 @@
-"use client"; // BẮT BUỘC: Vì có chức năng click copy nên phải là Client Component
+"use client"; // Client component: cần Clipboard API + DOM.
 
 import React, { useState } from 'react';
 
-// Định nghĩa dữ liệu Member để dễ quản lý, thêm người mới chỉ cần thêm vào đây
+// Danh sách member hiển thị trên trang.
 const members = [
   {
     id: 1,
@@ -10,7 +10,7 @@ const members = [
     role: "Organizer",
     stats: "Luckiness // Lucifer, The D€vil Corporated",
     avatarBg: "av-1",
-    imgSrc: "/image/lucifer.jpg", // Nhớ bỏ ảnh vào public/image
+    imgSrc: "/image/lucifer.jpg", // Ảnh nằm trong public/image
     socials: {
       youtube: "https://www.youtube.com/@ybLuc1fer666",
       discord: "tdc.luc1fer"
@@ -55,18 +55,18 @@ const members = [
   }
 ];
 
-// Component nút Discord (Đã sửa lỗi Copy)
+// Nút Discord: copy username + tooltip.
 const DiscordButton = ({ username }: { username: string }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const handleCopy = () => {
-    // Hàm hiển thị thông báo "Copied!"
+    // Hiển thị tooltip trong 2s.
     const triggerTooltip = () => {
       setShowTooltip(true);
       setTimeout(() => setShowTooltip(false), 2000);
     };
 
-    // CÁCH 1: Dùng API hiện đại (Chỉ chạy trên HTTPS/Localhost)
+    // Cách 1: Clipboard API (HTTPS/localhost).
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(username)
         .then(triggerTooltip)
@@ -75,12 +75,12 @@ const DiscordButton = ({ username }: { username: string }) => {
           alert('Không thể copy: ' + username);
         });
     } 
-    // CÁCH 2: Fallback thủ công (Chạy mọi nơi)
+    // Cách 2: Fallback dùng textarea (chạy mọi nơi).
     else {
       const textArea = document.createElement("textarea");
       textArea.value = username;
       
-      // Giấu khung nhập liệu đi
+      // Giấu input để không ảnh hưởng layout.
       textArea.style.position = "fixed";
       textArea.style.left = "-9999px";
       
@@ -89,7 +89,7 @@ const DiscordButton = ({ username }: { username: string }) => {
       textArea.select();
       
       try {
-        document.execCommand('copy'); // Lệnh copy cũ nhưng hiệu quả
+        document.execCommand('copy');
         triggerTooltip();
       } catch (err) {
         console.error('Fallback copy error', err);
@@ -119,7 +119,6 @@ export default function MemberPage() {
         {members.map((mem) => (
           <div className="member-card" key={mem.id}>
             <div className={`avatar ${mem.avatarBg}`}>
-              {/* Dùng thẻ img thường để giữ nguyên style CSS của bạn */}
               <img src={mem.imgSrc} alt={mem.name} />
             </div>
             
@@ -129,21 +128,18 @@ export default function MemberPage() {
               <div className="stats">{mem.stats}</div>
               
               <div className="social-links">
-                {/* Github Link */}
                 {mem.socials.github && (
                   <a href={mem.socials.github} target="_blank" className="social-btn">
                     <i className="fab fa-github"></i>
                   </a>
                 )}
                 
-                {/* Youtube Link */}
                 {mem.socials.youtube && (
                   <a href={mem.socials.youtube} target="_blank" className="social-btn">
                     <i className="fab fa-youtube"></i>
                   </a>
                 )}
 
-                {/* Discord Button */}
                 {mem.socials.discord && (
                   <DiscordButton username={mem.socials.discord} />
                 )}

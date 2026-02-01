@@ -1,9 +1,7 @@
-/* src/app/status/status.css */
-
-/* Reset và Layout */
+/* Base layout */
 .status-container {
     min-height: 100vh;
-    background-color: #0d1117; /* Đen xanh đậm */
+    background-color: #0d1117;
     color: #c9d1d9;
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     display: flex;
@@ -13,7 +11,7 @@
     padding: 20px;
 }
 
-/* Khung chính */
+/* Card */
 .status-card {
     background: #161b22;
     border: 1px solid #30363d;
@@ -25,7 +23,7 @@
     text-align: center;
 }
 
-/* Tiêu đề */
+/* Heading */
 h1 {
     margin: 0 0 30px 0;
     font-size: 24px;
@@ -35,7 +33,7 @@ h1 {
     padding-bottom: 20px;
 }
 
-/* Trạng thái to đùng */
+/* Status */
 .status-indicator {
     font-size: 40px;
     font-weight: 900;
@@ -50,7 +48,7 @@ h1 {
 .offline { color: #ff4d4d; text-shadow: 0 0 20px rgba(255, 77, 77, 0.4); }
 .checking { color: #e3b341; }
 
-/* Dấu chấm nhấp nháy */
+/* Status dot */
 .dot {
     width: 20px;
     height: 20px;
@@ -61,20 +59,20 @@ h1 {
 .offline .dot { background: #ff4d4d; }
 .checking .dot { background: #e3b341; animation: blink 1s infinite; }
 
-/* Thông tin phụ (Ping) */
+/* Detail row */
 .details {
     margin-top: 20px;
     font-size: 14px;
     color: #8b949e;
 }
 
-/* Dòng thời gian (Yêu cầu của bạn) */
+/* Footer time */
 .footer-time {
     margin-top: 40px;
     padding-top: 20px;
     border-top: 1px solid #30363d;
     font-size: 13px;
-    color: #58a6ff; /* Xanh dương */
+    color: #58a6ff;
     font-weight: bold;
 }
 

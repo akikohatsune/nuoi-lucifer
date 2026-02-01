@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import './status.css'; // Import CSS
+import './status.css';
 
-// Link CSV của bạn
+// CSV public dùng làm endpoint kiểm tra trạng thái.
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEAUBRs8RmNLMlelOmHJoc4369oJ3CDD8s27L5JKAM54hQ6r6aAFl-J0KYKrrVJWYKz2VOUo5ZLJ3s/pub?output=csv";
 
 
@@ -12,7 +12,7 @@ export default function ServiceStatus() {
   const [latency, setLatency] = useState<number>(0);
   const [timeString, setTimeString] = useState<string>('Loading...');
 
-  // Hàm lấy thời gian định dạng: hh:mm:ss | today is dd:mm:yy
+  // Định dạng thời gian hiển thị: hh:mm:ss | today is dd:mm:yy
   const getFormattedTime = () => {
     const now = new Date();
     
@@ -22,7 +22,7 @@ export default function ServiceStatus() {
     // Ngày : Tháng : Năm (viết tắt yy)
     const day = String(now.getDate()).padStart(2, '0');
     const month = String(now.getMonth() + 1).padStart(2, '0');
-    const year = String(now.getFullYear()).slice(-2); // Lấy 2 số cuối của năm
+    const year = String(now.getFullYear()).slice(-2);
     
     return `Last updated ${time} | today is ${day}:${month}:${year}`;
   };
@@ -32,8 +32,8 @@ export default function ServiceStatus() {
     const start = Date.now();
     
     try {
-      // Thêm &t=... để tránh cache, đo chính xác tốc độ mạng hiện tại
-      const res = await fetch(`${SHEET_CSV_URL}&t=${start}`, { method: 'HEAD' }); // Dùng HEAD cho nhẹ
+      // Thêm tham số thời gian để tránh cache; dùng HEAD để nhẹ payload.
+      const res = await fetch(`${SHEET_CSV_URL}&t=${start}`, { method: 'HEAD' });
       
       const end = Date.now();
       setLatency(end - start);
@@ -47,16 +47,16 @@ export default function ServiceStatus() {
       console.error(error);
       setStatus('offline');
     } finally {
-      // Cập nhật dòng thời gian mỗi lần check xong
+      // Cập nhật thời gian sau mỗi lần kiểm tra.
       setTimeString(getFormattedTime());
     }
   };
 
   useEffect(() => {
-    // Check ngay lần đầu
+    // Kiểm tra ngay lần đầu.
     checkService();
 
-    // Tự động check lại mỗi 10 giây
+    // Lặp lại mỗi 10 giây.
     const interval = setInterval(checkService, 10000);
     return () => clearInterval(interval);
   }, []);
@@ -66,7 +66,7 @@ export default function ServiceStatus() {
       <div className="status-card">
         <h1>System Status</h1>
 
-        {/* Trạng thái Online/Offline */}
+        {/* Trạng thái tổng */}
         <div className={`status-indicator ${status}`}>
           <span className="dot"></span>
           <span>
@@ -82,7 +82,7 @@ export default function ServiceStatus() {
           <p>Latency: <strong>{status === 'online' ? `${latency}ms` : '--'}</strong></p>
         </div>
 
-        {/* Dòng thời gian đúng yêu cầu */}
+        {/* Thời gian cập nhật */}
         <div className="footer-time">
           {timeString}
         </div>

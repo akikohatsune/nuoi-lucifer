@@ -1,16 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import Link from "next/link"; // Import thẻ Link để chuyển trang không cần load lại
-import "./globals.css"; // Import CSS toàn cục
+import Link from "next/link";
+import "./globals.css";
 import NavMenu from "./components/NavMenu";
-
-// Import SpeedInsights từ Vercel để tối ưu hiệu suất
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
-// Import and use the <Analytics/> React component into your app's layout.
 import { Analytics } from "@vercel/analytics/next";
 
-// Cấu hình Metadata (SEO & Embed Discord) - Dùng chung cho cả web
-
+// Metadata SEO + social share dùng chung toàn site.
 export const metadata: Metadata = {
   title: "Nuôi Lucifer!",
   description: "Tôi nghèo, tôi cần tiền, nhưng tôi KHÔNG MẤT LƯƠNG TÂM!",
@@ -41,27 +36,21 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <head>
-        {/* QUAN TRỌNG: Link thư viện Icon FontAwesome để hiện icon GitHub, Discord */}
+        {/* Font Awesome cho icon GitHub/Discord trên toàn site */}
         <link 
           rel="stylesheet" 
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
         />
       </head>
       <body>
-        {/* --- HEADER (MENU) DÙNG CHUNG --- */}
         <header>
-          {/* Logo bấm vào sẽ về trang chủ */}
           <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>
             <div className="logo" style={{ fontWeight: 'bold', fontSize: '20px' }}>
               Nuôi Lucifer
             </div>
           </Link>
-          
-          {/* Menu điều hướng */}
           <NavMenu />
         </header>
-        
-        {/* --- NỘI DUNG CỦA TỪNG TRANG SẼ HIỆN Ở DƯỚI ĐÂY --- */}
         {children}
         <Analytics />
         <SpeedInsights />

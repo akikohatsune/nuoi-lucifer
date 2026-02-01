@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <main>
       <div className="hero-banner">
-        {/* Đường dẫn ảnh bắt đầu từ dấu / (tức là thư mục public) */}
+        {/* Ảnh banner nằm trong thư mục public */}
         <img src="/avatar/videoframe_5835.png" alt="banner" />
       </div>
 

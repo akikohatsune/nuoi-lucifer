@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 
-// --- CẤU HÌNH ---
+// Cấu hình VietQR.
 const BANK_ID = "TPB";
 const ACCOUNT_NO = "22310062007"; 
 const ACCOUNT_NAME = "DAO GIA KHANH";
 const TEMPLATE = "compact2";
 
-// --- DÁN LINK CSV TỪ GOOGLE SHEET CỦA BẠN VÀO ĐÂY ---
+// CSV public từ Google Sheet.
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEAUBRs8RmNLMlelOmHJoc4369oJ3CDD8s27L5JKAM54hQ6r6aAFl-J0KYKrrVJWYKz2VOUo5ZLJ3s/pub?output=csv";
 
 interface Donation {
@@ -24,7 +24,7 @@ export default function DonatePage() {
   const [donations, setDonations] = useState<Donation[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Link QR
+  // URL ảnh QR theo số tiền + lời nhắn.
   const qrUrl = `https://img.vietqr.io/image/${BANK_ID}-${ACCOUNT_NO}-${TEMPLATE}.png?amount=${amount}&addInfo=${encodeURIComponent(content)}&accountName=${encodeURIComponent(ACCOUNT_NAME)}`;
 
   useEffect(() => {
@@ -38,19 +38,18 @@ export default function DonatePage() {
           header: true,
           skipEmptyLines: true,
           complete: (results: any) => {
-            // Mapping dữ liệu từ Google Form sang định dạng web cần
-            // Cột Google Form thường là: "Dấu thời gian", "Tên người gửi", "Số tiền", "Lời nhắn"
+            // Map dữ liệu từ Google Form theo header trong Sheet.
             const rawData = results.data;
             
             const cleanData = rawData.map((row: any) => ({
-              // Sửa tên cột bên dưới cho khớp CHÍNH XÁC với dòng 1 trong Google Sheet của bạn
+              // Đổi tên cột nếu header khác với mặc định.
               timestamp: row['Dấu thời gian'] || row['Timestamp'],
               name: row['Tên người gửi'] || row['Tên'],
               amount: row['Số tiền'] || '0',
               content: row['Lời nhắn'] || ''
             }));
 
-            // Đảo ngược để mới nhất lên đầu
+            // Mới nhất lên đầu.
             setDonations(cleanData.reverse());
             setLoading(false);
           },
@@ -69,7 +68,7 @@ export default function DonatePage() {
         <div className="container">
             <h2 style={{ textAlign: 'center', marginBottom: '30px', border: 'none' }}>Donate cho Lucifer</h2>
 
-            {/* --- PHẦN QR CODE (GIỮ NGUYÊN) --- */}
+            {/* Section: QR */}
             <div className="donate-box-grid">
                 <div className="input-section">
                     <h3 style={{ color: '#ff66aa', marginTop: 0 }}>1. Nhập thông tin</h3>
@@ -88,7 +87,7 @@ export default function DonatePage() {
                 </div>
             </div>
 
-            {/* --- DANH SÁCH TỪ GOOGLE FORM --- */}
+            {/* Section: Danh sách ủng hộ */}
             <h2 style={{ marginTop: '50px' }}>Danh sách ủng hộ (Live)</h2>
             <p className="lead">Cập nhật nhanh từ Server "Cơm".</p>
             <p className="lead">SheetLink: <a href="https://docs.google.com/spreadsheets/d/1PYj1ZbWCfCdplER2zkGB_W-NfPPSiiFAYZiPgPTfIxg/edit?usp=sharing" target="_blank">Link Google Sheet</a>.</p>
@@ -116,7 +115,7 @@ export default function DonatePage() {
                                     </td>
                                     <td className="amount-green">{item.amount}</td>
                                     <td className="time-gray">
-                                        {/* Cắt bớt phần giây trong timestamp cho gọn */}
+                                        {/* Bỏ phần giây để gọn hơn */}
                                         {item.timestamp ? item.timestamp.split(' ')[1] + ' ' + item.timestamp.split(' ')[0] : ''}
                                     </td>
                                 </tr>

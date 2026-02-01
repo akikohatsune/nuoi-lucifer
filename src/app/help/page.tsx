@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 export default function HelpPage() {
   return (
     <div className="container">
@@ -22,14 +21,13 @@ export default function HelpPage() {
             <p style={{ fontSize: '16px', marginBottom: '10px' }}>Gặp vấn đề về sao kê hoặc lỗi hệ thống?</p>
             <p style={{ color: '#999', fontSize: '13px' }}>Vui lòng gửi email trực tiếp cho đội ngũ quản trị.</p>
             
-            {/* Email 1 */}
+            {/* Email hỗ trợ */}
             <a href="mailto:reopymiku@gmail.com" className="mail-link">
                 <i className="fa-solid fa-envelope"></i> reopymiku@gmail.com
             </a>
             
             <br />
             
-            {/* Email 2 */}
             <a href="mailto:hatsuneakiko@komekokomi.id.vn" className="mail-link">
                 <i className="fa-solid fa-envelope"></i> hatsuneakiko@komekokomi.id.vn
             </a>

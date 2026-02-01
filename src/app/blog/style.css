@@ -1,5 +1,5 @@
+/* Blog page styles */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
-
 
 body { 
     background-color: #333 !important; 
@@ -13,23 +13,23 @@ body {
 
 h1, h2, h3 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700; /* Độ đậm Bold */
+    font-weight: 700;
 }
 
-/* 2. KHUNG CHÍNH (LAYOUT) */
+/* Layout */
 .layout-container { 
     width: 100%;
     max-width: 900px;
-    margin: 0; /* Dính trái */
+    margin: 0;
     padding: 40px 50px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Ép mọi thứ dính trái */
+    align-items: flex-start;
     text-align: left;
 }
 
-/* 3. HEADER */
+/* Header */
 .header-box { 
     width: 100%;
     text-align: left !important; 
@@ -37,7 +37,7 @@ h1, h2, h3 {
     flex-direction: column;
     align-items: flex-start !important;
     margin-bottom: 40px; 
-    border-bottom: 2px solid #ff66aa; /* Viền hồng */
+    border-bottom: 2px solid #ff66aa;
     padding-bottom: 15px;
 }
 
@@ -100,14 +100,14 @@ h1, h2, h3 {
     }
 }
 
-/* 4. ADMIN SECTION */
+/* Admin section */
 .admin-section {
     width: 100%;
     text-align: left;
     margin-bottom: 40px;
 }
 
-/* Login Form */
+/* Login form */
 .login-wrapper { 
     text-align: left; 
     opacity: 0; 
@@ -135,7 +135,7 @@ h1, h2, h3 {
     border-radius: 4px;
 }
 
-/* Post Form */
+/* Post form */
 .post-form { 
     background: #1a1a1a; 
     border: 1px solid #ff66aa; 
@@ -177,13 +177,13 @@ select, input, textarea {
 }
 .btn-post:hover { background: #ff3399; }
 
-/* 5. FEED & POST STYLES */
+/* Feed + posts */
 .feed-container {
     width: 100%;
     text-align: left;
 }
 
-/* Style Note (Viền hồng) */
+/* Post: note */
 .style-note {
     background-color: #252525;
     border-left: 5px solid #ff66aa;
@@ -210,7 +210,7 @@ select, input, textarea {
     margin-bottom: 15px; 
 }
 
-/* Style Card (Danh sách) */
+/* Post: card */
 .style-card {
     background-color: #1a1a1a;
     border: 1px solid #333;
@@ -233,7 +233,7 @@ select, input, textarea {
 .card-desc { color: #aaa; font-size: 0.95rem; }
 .card-action { display: flex; flex-direction: column; gap: 5px; justify-content: center; }
 
-/* 6. REACTION & UTILS */
+/* Reactions + utilities */
 .reaction-area { 
     display: flex; 
     gap: 10px; 
@@ -256,7 +256,7 @@ button:hover { background: #333; color: #fff; }
 
 .post-image {
     display: block;
-    max-width: 100%;       /* Chiều ngang không bao giờ tràn khung */
+    max-width: 100%;
     height: auto;
     border-radius: 8px;
     margin-top: 10px;
@@ -264,66 +264,63 @@ button:hover { background: #333; color: #fff; }
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
-/* 1. Ảnh trong dạng Card (Bài viết nhỏ) */
-/* Ép ảnh nhỏ lại, giống thumbnail hơn */
+/* Images: card thumbnails */
 .card-image {
-    max-height: 250px;     /* 🔥 QUAN TRỌNG: Cao tối đa 250px thôi */
-    width: auto;           /* Chiều ngang tự co theo */
-    object-fit: contain;   /* Giữ nguyên tỷ lệ ảnh, không bị cắt, không bị méo */
-    background-color: #000; /* Thêm nền đen nếu ảnh không vừa khung */
+    max-height: 250px;
+    width: auto;
+    object-fit: contain;
+    background-color: #000;
     border: 1px solid #333;
 }
 
-/* 2. Ảnh trong dạng Note (Bài viết to - Viền hồng) */
-/* Cho phép to hơn chút để làm điểm nhấn */
+/* Images: note hero */
 .note-image {
-    width: 100%;           /* Chiều ngang full khung */
-    max-height: 400px;     /* Chiều cao tối đa 400px */
-    object-fit: cover;     /* Cắt bớt phần thừa để ảnh lấp đầy khung đẹp hơn */
-    border: 1px solid #ff66aa; /* Viền hồng cho đồng bộ */
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border: 1px solid #ff66aa;
 }
 
-/* --- IMAGE UPLOAD AREA (ĐÃ SỬA LẠI NÚT BẤM) --- */
+/* Image upload */
 
 .image-upload-area {
     display: flex;
-    align-items: center; /* Căn giữa nút và ảnh preview theo chiều dọc */
+    align-items: center;
     gap: 15px;
-    margin-bottom: 10px; /* Thêm chút khoảng cách với nút Đăng bài */
+    margin-bottom: 10px;
 }
 
-/* Biến cái nhãn (label) thành một nút bấm "xịn" */
+/* Upload button */
 .custom-file-upload {
-    display: inline-flex; /* Để dễ căn giữa icon và chữ */
+    display: inline-flex;
     align-items: center;
-    gap: 8px; /* Khoảng cách giữa icon 📷 và chữ */
+    gap: 8px;
     
-    background-color: #2a2a2a; /* Nền xám tối, nổi hơn nền form chút */
-    color: #e0e0e0; /* Chữ màu sáng */
-    border: 2px solid #444; /* Viền liền, cứng cáp */
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border: 2px solid #444;
     
-    padding: 10px 20px; /* Nút to ra, dễ bấm */
-    border-radius: 8px; /* Bo tròn góc đồng bộ với các input khác */
+    padding: 10px 20px;
+    border-radius: 8px;
     
-    font-weight: 700; /* Chữ đậm lên */
+    font-weight: 700;
     font-size: 0.9rem;
-    text-transform: uppercase; /* Chữ in hoa nhìn cho mạnh mẽ */
+    text-transform: uppercase;
     
     cursor: pointer;
-    transition: all 0.2s ease-in-out; /* Hiệu ứng chuyển màu mượt */
+    transition: all 0.2s ease-in-out;
 }
 
-/* Hiệu ứng khi Bấm chuột xuống (Active) */
 .custom-file-upload:active {
-    background-color: #e05a96; /* Màu hồng tối hơn chút khi bấm */
+    background-color: #e05a96;
     box-shadow: none;
 }
 
-/* --- PHẦN PREVIEW ẢNH (GIỮ NGUYÊN) --- */
+/* Image preview */
 .image-preview-box {
     position: relative;
-    height: 50px; /* Thumbnail nhỏ gọn */
-    flex-shrink: 0; /* Không bị co lại nếu tên nút quá dài */
+    height: 50px;
+    flex-shrink: 0;
 }
 .image-preview {
     height: 100%;
@@ -340,11 +337,9 @@ button:hover { background: #333; color: #fff; }
     font-weight: bold;
     background: #ff4d4d !important;
     color: white !important;
-    border: 2px solid #1a1a1a !important; /* Viền trùng màu nền để nổi bật */
+    border: 2px solid #1a1a1a !important;
     border-radius: 50%;
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     padding: 0;
 }
-
-/* Animation */

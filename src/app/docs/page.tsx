@@ -1,5 +1,5 @@
 import React from 'react';
-import './docs.css'; // Import file CSS vừa tạo
+import './docs.css';
 
 export default function Documentation() {
   return (
@@ -11,7 +11,7 @@ export default function Documentation() {
         Hệ thống này giúp hiển thị thông báo Donate theo thời gian thực từ Google Sheets lên OBS.
       </p>
 
-      {/* --- PHẦN 1: GOOGLE SHEETS --- */}
+      {/* Section: Google Sheets */}
       <h2>1. Cấu hình Google Sheets (Quan trọng)</h2>
       <p>Để hệ thống hoạt động, file Google Sheet của bạn <strong>BẮT BUỘC</strong> phải có đúng các cột theo thứ tự sau:</p>
       
@@ -61,7 +61,7 @@ export default function Documentation() {
         <li>Nhấn <strong>Xuất bản (Publish)</strong> và copy đường link đó.</li>
       </ol>
 
-      {/* --- PHẦN 2: CẤU HÌNH CODE --- */}
+      {/* Section: Cấu hình mã nguồn */}
       <h2>2. Cấu hình Code Next.js</h2>
       <p>Mở file <code>src/app/overlay/alert/page.tsx</code> và sửa các dòng sau:</p>
       
@@ -74,7 +74,7 @@ const CHECK_INTERVAL = 3000; // 3 giây check 1 lần
 // 3. Chế độ Test (Bật true để chỉnh sửa giao diện, False để live thật)
 const TEST_MODE = false; </code></pre>
 
-      {/* --- PHẦN 3: CÀI ĐẶT OBS --- */}
+      {/* Section: OBS (Alert Overlay) */}
       <h2>3. Thêm vào OBS Studio (Alert Overlay)</h2>
       <p>Làm theo các bước sau để hiển thị Overlay lên livestream:</p>
       <ol>
@@ -92,7 +92,7 @@ const TEST_MODE = false; </code></pre>
         Mỗi khi bạn sửa code hoặc cập nhật CSS, bạn cần vào OBS &rarr; Double click vào Browser Source &rarr; Kéo xuống dưới cùng và nhấn nút <strong style={{color: '#ff66aa'}}>Refresh cache of current page</strong> để OBS nhận giao diện mới.
       </div>
 
-      {/* --- PHẦN 3: CÀI ĐẶT OBS --- */}
+      {/* Section: OBS (OverlayQR) */}
       <h2>3. Thêm vào OBS Studio (OverlayQR)</h2>
       <p>Làm theo các bước sau để hiển thị Overlay QR lên livestream:</p>
       <ol>
@@ -111,7 +111,7 @@ const TEST_MODE = false; </code></pre>
       </div>
 
 
-      {/* --- PHẦN 4: CUSTOM GIAO DIỆN --- */}
+      {/* Section: Tuỳ biến giao diện */}
       <h2>4. Chỉnh sửa Giao diện (CSS)</h2>
       <p>
         Mọi chỉnh sửa về màu sắc, font chữ, kích thước đều nằm trong file: 

@@ -1,4 +1,4 @@
-/* src/app/globals.css */
+/* Global styles */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
@@ -12,10 +12,10 @@ body {
 
 h1, h2, h3 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700; /* Độ đậm Bold */
+    font-weight: 700;
 }
 
-/* Thanh điều hướng */
+/* Header / nav */
 header {
   background-color: #333;
   padding: 15px 20px;
@@ -70,7 +70,7 @@ header {
   background-color: #333;
 }
 
-/* Nội dung chính */
+/* Layout container */
 .container {
   max-width: 1000px;
   margin: 20px auto;
@@ -80,7 +80,7 @@ header {
 }
 h1, h2, h3 { color: #fff; } 
     
-/* Phần giới thiệu */
+/* Hero */
 .hero {
   text-align: center;
   margin-bottom: 40px;
@@ -114,7 +114,7 @@ tr:hover {
   background-color: #333;
 }
     
-/* Badges list */
+/* Badges */
 .badges ul {
   list-style: none;
   padding: 0;
@@ -162,9 +162,7 @@ tr:hover {
   }
 }
 
-/* --- Dán nối tiếp vào cuối file src/app/globals.css --- */
-
-/* GRID MEMBER */
+/* Members grid */
 .members-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -178,7 +176,7 @@ tr:hover {
     border-radius: 8px;
     padding: 20px;
     display: flex;
-    align-items: flex-start; /* Sửa lại cú pháp chuẩn CSS */
+    align-items: flex-start;
     transition: transform 0.2s;
     position: relative;
 }
@@ -195,7 +193,7 @@ tr:hover {
     border-radius: 50%;
     margin-right: 20px;
     flex-shrink: 0;
-    overflow: hidden; /* Đảm bảo ảnh tròn */
+    overflow: hidden;
 }
 
 .avatar img {
@@ -205,7 +203,7 @@ tr:hover {
     display: block;
 }
 
-/* Màu nền avatar dự phòng */
+/* Avatar fallback gradients */
 .av-1 { background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%); }
 .av-2 { background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%); }
 .av-3 { background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); }
@@ -216,7 +214,7 @@ tr:hover {
 .role { color: #ff66aa; font-size: 13px; font-weight: bold; text-transform: uppercase; }
 .stats { color: #888; font-size: 13px; margin-top: 5px; margin-bottom: 15px; }
 
-/* SOCIAL ICONS */
+/* Social icons */
 .social-links {
     display: flex;
     gap: 15px;
@@ -252,7 +250,7 @@ tr:hover {
     z-index: 10;
     bottom: 125%;
     left: 50%;
-    transform: translateX(-50%); /* Căn giữa chuẩn hơn margin-left */
+    transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.3s;
     font-size: 10px;
@@ -275,13 +273,13 @@ tr:hover {
     opacity: 1;
 }
 
-/* Responsive cho mobile */
+/* Members: mobile */
 @media (max-width: 768px) {
     .members-grid {
-        grid-template-columns: 1fr; /* 1 cột trên điện thoại */
+        grid-template-columns: 1fr;
     }
 }
-/* --- HELP PAGE STYLES (Dán tiếp vào cuối file) --- */
+/* Help page */
 .contact-area {
     background-color: #333;
     padding: 30px;
@@ -302,7 +300,6 @@ tr:hover {
     font-weight: bold;
     border-radius: 5px;
     transition: 0.3s;
-    /* Thêm khoảng cách nếu nút bị dính nhau trên màn hình nhỏ */
     margin-bottom: 5px; 
 }
 
@@ -314,10 +311,10 @@ tr:hover {
 .mail-link i {
     margin-right: 10px;
 }
-/* --- VIETQR DONATE STYLE --- */
+/* Donate form */
 .donate-box-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Chia đôi màn hình */
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
     background-color: #2a2a2a;
     padding: 30px;
@@ -365,7 +362,7 @@ tr:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #222; /* Nền tối hơn để nổi bật QR */
+    background-color: #222;
     padding: 20px;
     border-radius: 8px;
 }
@@ -379,12 +376,12 @@ tr:hover {
 
 .qr-frame img {
     width: 100%;
-    max-width: 300px; /* Giới hạn độ to của QR */
+    max-width: 300px;
     height: auto;
     display: block;
 }
 
-/* Mobile: Xếp chồng lên nhau thay vì chia cột */
+/* Donate form: mobile */
 @media (max-width: 768px) {
     .donate-box-grid {
         grid-template-columns: 1fr;
@@ -392,34 +389,33 @@ tr:hover {
     }
 }
 
-/* --- OVERLAY OBS STYLE (Phiên bản có QR) --- */
+/* OBS overlay layout */
 .transparent-bg {
     background-color: transparent !important;
     height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Hiện ở dưới cùng */
+    align-items: flex-end;
     padding-bottom: 50px;
     overflow: hidden;
 }
 
 .alert-box {
-    background: rgba(20, 20, 20, 0.95); /* Màu nền tối hơn */
+    background: rgba(20, 20, 20, 0.95);
     border: 2px solid #ff66aa;
     border-radius: 15px;
     padding: 15px 30px;
-    display: flex; /* Xếp ngang */
+    display: flex;
     align-items: center;
-    gap: 25px; /* Khoảng cách giữa các cột */
+    gap: 25px;
     box-shadow: 0 0 30px rgba(255, 102, 170, 0.6);
     
-    /* Animation trồi lên */
     animation: slideInUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     max-width: 900px;
 }
 
-/* Cột Avatar */
+/* Column: avatar */
 .avatar-img {
     width: 100px;
     height: 100px;
@@ -428,11 +424,11 @@ tr:hover {
     object-fit: cover;
 }
 
-/* Cột Thông tin (Ở giữa) */
+/* Column: info */
 .col-info {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Canh trái text */
+    align-items: flex-start;
     min-width: 250px;
 }
 
@@ -468,7 +464,7 @@ tr:hover {
     border-radius: 5px;
 }
 
-/* Cột QR (Bên phải) */
+/* Column: QR */
 .col-qr {
     display: flex;
     flex-direction: column;
@@ -487,7 +483,7 @@ tr:hover {
 }
 
 .qr-img {
-    width: 100px; /* Kích thước QR */
+    width: 100px;
     height: 100px;
     display: block;
 }

@@ -1,6 +1,4 @@
-/* src/app/docs/docs.css */
-
-/* Reset cơ bản */
+/* Base layout */
 .docs-container {
     max-width: 900px;
     margin: 0 auto;
@@ -8,14 +6,14 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #e0e0e0;
     line-height: 1.6;
-    background-color: #121212; /* Nền tối */
+    background-color: #121212;
     min-height: 100vh;
 }
 
-/* Tiêu đề */
+/* Headings */
 h1 {
     font-size: 2.5rem;
-    color: #ff66aa; /* Hồng chủ đạo */
+    color: #ff66aa;
     border-bottom: 2px solid #ff66aa;
     padding-bottom: 10px;
     margin-bottom: 30px;
@@ -25,7 +23,7 @@ h1 {
 
 h2 {
     font-size: 1.8rem;
-    color: #3ad46b; /* Xanh lá điểm nhấn */
+    color: #3ad46b;
     margin-top: 40px;
     margin-bottom: 15px;
     border-left: 5px solid #3ad46b;
@@ -38,12 +36,12 @@ h3 {
     margin-top: 25px;
 }
 
-/* Đoạn văn & List */
+/* Text + lists */
 p { margin-bottom: 15px; color: #ccc; }
 ul, ol { margin-bottom: 20px; padding-left: 25px; }
 li { margin-bottom: 8px; color: #ddd; }
 
-/* Code block */
+/* Code blocks */
 pre {
     background: #1e1e1e;
     padding: 15px;
@@ -55,10 +53,10 @@ pre {
 
 code {
     font-family: 'Consolas', 'Courier New', monospace;
-    color: #ff9d00; /* Màu cam cho code */
+    color: #ff9d00;
 }
 
-/* Nút bấm hoặc Link */
+/* Links */
 a {
     color: #ff66aa;
     text-decoration: none;
@@ -66,7 +64,7 @@ a {
 }
 a:hover { text-decoration: underline; }
 
-/* Bảng */
+/* Tables */
 table {
     width: 100%;
     border-collapse: collapse;

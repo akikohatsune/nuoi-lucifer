@@ -1,6 +1,4 @@
-/* src/app/overlay/alert/style.css */
-
-/* 1. Reset Global cho trang này */
+/* Global reset cho overlay */
 header, nav, footer, .navbar { 
   display: none !important; 
 } 
@@ -10,17 +8,17 @@ html, body {
   margin: 0; 
   padding: 0; 
   overflow: hidden; 
-  background: transparent !important; /* Nền trong suốt */
+  background: transparent !important;
 }
 
-/* Căn giữa nội dung cho body */
+/* Center nội dung */
 body {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* 2. Container chính */
+/* Container */
 .alert-container {
   width: 100%;
   display: flex;
@@ -28,14 +26,13 @@ body {
   pointer-events: none;
 }
 
-/* 3. Khung Alert */
+/* Alert card */
 .alert { 
   color: #fff; 
   padding: 10px; 
   text-align: center; 
-  opacity: 0; /* Mặc định ẩn */
+  opacity: 0;
   
-  /* Bóng đổ chữ đậm */
   text-shadow: 0 2px 4px rgba(0,0,0,0.9); 
   
   display: flex;
@@ -44,7 +41,7 @@ body {
   justify-content: center;
 }
 
-/* 4. Animation */
+/* Animation */
 .alert.show { 
   animation: fadeIn 0.6s ease-out forwards; 
 }
@@ -63,22 +60,21 @@ body {
   to   { opacity: 0; transform: translateY(-10px); }
 }
 
-/* 5. DÒNG 1 (Tên - Text - Tiền) */
+/* Dòng 1: tên - hành động - số tiền */
 .line1 { 
   font-size: 30px; 
   margin-bottom: 10px;
   
-  /* Flexbox tách chữ */
   display: flex;      
   flex-direction: row; 
   align-items: center;
   justify-content: center;
-  gap: 12px;  /* Khoảng cách cứng 12px */
+  gap: 12px;
   white-space: nowrap; 
 }
 
 .name { 
-  color: #ff66b2; /* Hồng */
+  color: #ff66b2;
   font-weight: 900; 
   text-transform: uppercase; 
 }
@@ -91,11 +87,11 @@ body {
 }
 
 .amount { 
-  color: #3ad46b; /* Xanh lá */
+  color: #3ad46b;
   font-weight: 900; 
 }
 
-/* 6. DÒNG 2 (Lời nhắn) */
+/* Dòng 2: lời nhắn */
 .line2 { 
   color: #ffffff; 
   font-style: italic; 

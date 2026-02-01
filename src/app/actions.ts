@@ -1,14 +1,11 @@
-// src/app/actions.ts
-"use server"; // Dòng này bắt buộc để báo là code chạy trên Server
+"use server"; // Server action (chạy trên server).
 
 export async function verifyKeyAction(userKeyContent: string) {
-  // Server đọc biến môi trường (Không cần NEXT_PUBLIC_)
+  // Đọc key thật từ biến môi trường.
   const realKey = process.env.SECRET_KEY_CONTENT;
 
-  // So sánh
   if (userKeyContent.trim() === realKey) {
-    return true; // Đúng
-  } else {
-    return false; // Sai
+    return true;
   }
+  return false;
 }
