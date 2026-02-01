@@ -1,24 +1,24 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+/node_modules/
 /.pnp
 .pnp.*
 .yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+!.yarn/patches/
+!.yarn/plugins/
+!.yarn/releases/
+!.yarn/versions/
 
 # testing
-/coverage
+/coverage/
 
 # next.js
 /.next/
 /out/
 
-# production
-/build
+# production builds
+/build/
 
 # misc
 .DS_Store
@@ -29,12 +29,25 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+database-debug.log*
+pubsub-debug.log*
+storage-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files (keep examples if needed)
 .env*
+!.env.example
+!.env.sample
+!.env.template
 
 # vercel
-.vercel
+.vercel/
+
+# firebase
+/.firebase/
+/src/lib/firebase.ts
 
 # typescript
 *.tsbuildinfo
@@ -42,8 +55,7 @@ next-env.d.ts
 
 # key
 *.mikustart
-/key
+/key/
 
-/src/generated/prisma
-
-/src/generated/prisma
+# generated
+/src/generated/prisma/
