@@ -47,7 +47,7 @@ storage-debug.log*
 
 # firebase
 /.firebase/
-/src/lib/firebase.ts
+firebase.ts
 
 # typescript
 *.tsbuildinfo
