@@ -1,37 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nuoi Lucifer
 
-## Getting Started
+Next.js app for a donation/overlay website with a blog, status page, and OBS overlays.
 
-First, run the development server:
+## Requirements
+- Node.js 18+ (recommended)
+- Firebase project (Auth + Firestore)
+- (Optional) Cloudinary for image uploads
 
+## Setup
+1) Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2) Create `.env.local` (see `.env.example`):
+```bash
+cp .env.example .env.local
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3) Run dev server:
+```bash
+npm run dev
+```
+Open `http://localhost:3000`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
+These are public (client) Firebase config values:
+```
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
+```
 
-## Learn More
+Cloudinary (used in the blog page):
+```
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Key Pages
+- `/` Home page
+- `/donate` Donation page + VietQR
+- `/overlay` QR overlay for OBS
+- `/overlay/alert` Alert overlay for OBS
+- `/status` Live status check
+- `/blog` Blog with admin posting (Firestore)
+- `/admin` Admin login
+- `/docs` Setup documentation
+- `/help` Support page
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Firebase Notes
+Firebase config is loaded from public env vars in `src/lib/firebase.ts`. These values are **not secret** and must be exposed to the client.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-"# nuoi-lucifer" 
+## Scripts
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+```
