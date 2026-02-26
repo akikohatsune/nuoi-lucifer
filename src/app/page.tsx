@@ -49,7 +49,7 @@ export default function Home() {
 
         <footer style={{ marginTop: '50px', textAlign: 'center', color: '#777', fontSize: '12px' }}>
           <p>Tôi nghèo, tôi cần tiền, nhưng tôi KHÔNG MẤT LƯƠNG TÂM! Mỗi đồng tiền các bạn gửi, tôi sẽ chi tiêu rõ ràng, minh bạch như bụng đói của tôi vậy! 😭</p>
-          <p>(kome, what is this?)</p>
+          <p>(kome, what is this? nothing)</p>
         </footer>
       </div>
     </main>
